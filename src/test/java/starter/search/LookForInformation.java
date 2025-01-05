@@ -13,4 +13,14 @@ public class LookForInformation {
                         .thenHit(Keys.ENTER)
         );
     }
+
+    public static Performable fromLanguage(String language) {
+        return Task.where("{0} searches for '" + language + "'",
+                Enter.theValue(language)
+                        .into(SearchArticle.ARTICLE_LANGUAGE_TEXT_SEARCH)
+                        .thenHit(Keys.ENTER)
+        );
+    }
+
+
 }

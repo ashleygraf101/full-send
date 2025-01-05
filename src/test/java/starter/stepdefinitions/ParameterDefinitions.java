@@ -5,6 +5,8 @@ import io.cucumber.java.ParameterType;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.runners.Parameterized;
 
 public class ParameterDefinitions {
 
@@ -17,4 +19,5 @@ public class ParameterDefinitions {
     public void setTheStage() {
         OnStage.setTheStage(new OnlineCast());
     }
+
 }
