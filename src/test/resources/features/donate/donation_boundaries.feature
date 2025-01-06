@@ -1,6 +1,6 @@
 Feature: Donation frequency
 
-  @minimum
+  @minimum-donation-amount-by-country
   Scenario: Paying below 'country' minimum
     Given Sergey is deciding to donate to Wikipedia
     When he chooses to use '<country>' bank accounts
@@ -13,7 +13,7 @@ Feature: Donation frequency
     | Australia | paymentmethod-cc | Please select an amount (minimum 1.50 AUD) | 1.49 |
     | United States | paymentmethod-cc | Please select an amount (minimum 1 USD) | 0.99 |
 
-  @maximum
+  @maximum-donation-amount-by-country
   Scenario Outline: Paying above 'country' maximum
     Given Sergey is deciding to donate to Wikipedia
     When he chooses to use '<country>' bank accounts

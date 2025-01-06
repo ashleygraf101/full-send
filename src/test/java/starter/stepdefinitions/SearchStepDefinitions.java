@@ -64,7 +64,7 @@ public class SearchStepDefinitions {
     @When("{actor} selects article language {string} from article")
     public void selectsArticleLanguage(Actor actor, String language) {
         actor.attemptsTo(
-                Click.on(SearchArticle.ARTICLE_LANGUAGE),
+                Click.on(SearchArticle.ARTICLE_LANGUAGE_BUTTON),
                 SelectFromArticleLanguageList.withText(language)
         );
     }
@@ -72,13 +72,11 @@ public class SearchStepDefinitions {
     @When("{actor} searches for article language {string} from article and selects {string}")
     public void searchesForArticleLanguage(Actor actor, String languageSearched, String languageSelected) {
         actor.attemptsTo(
-                Click.on(SearchArticle.ARTICLE_LANGUAGE),
+                Click.on(SearchArticle.ARTICLE_LANGUAGE_BUTTON),
                 LookForInformation.fromLanguage(languageSearched),
                 SelectFromArticleLanguageList.withText(languageSelected)
         );
     }
-
-
 
     @Then("{actor} sees the article title contains the {string}")
     public void viewContentTitle(Actor actor, String term) {
@@ -104,8 +102,7 @@ public class SearchStepDefinitions {
     @Then("{actor} should not see {string} in the article language list")
     public void shouldNotSeeLanguageInTheArticleLanguageList(Actor actor, String language) {
         actor.attemptsTo(
-                Click.on(SearchArticle.ARTICLE_LANGUAGE),
-                WaitUntil.the(SearchArticle.LANGUAGES_LIST, isVisible()),
+                Click.on(SearchArticle.ARTICLE_LANGUAGE_BUTTON),
                 Ensure.that(SearchArticle.languagesList()).doesNotContain(language)
         );
     }
@@ -113,10 +110,8 @@ public class SearchStepDefinitions {
     @Then("{actor} sees the language count for the article is {string}")
     public void seeArticleLanguageCount(Actor actor, String count) {
         actor.attemptsTo(
-
-
                 Click.on(SearchArticle.ARTICLE_LANGUAGE),
-                Ensure.that(SearchArticle.articleLanguageCount()).isEqualTo(DonationPage.ARTICLE_LANGUAGES_MANUAL_COUNT + " languages")
+                Ensure.that(SearchArticle.articleLanguageCount()).isEqualTo(count + " languages")
         );
     }
 

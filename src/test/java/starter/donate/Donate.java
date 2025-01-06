@@ -45,6 +45,10 @@ public class Donate {
     public static Performable withTransactionFee() {
         return Task.where(SetCheckbox.of("#ptf-checkbox").toTrue());
     };
+    public static Performable acceptPromotionalEmails() {
+        return Task.where(Click.on("#optin-yes"));
+    };
+
 
     public static Performable monthly() {
         return Task.where(Click.on(By.xpath("//*[@id=\"actual-form\"]/fieldset[1]/ul/li[2]")));

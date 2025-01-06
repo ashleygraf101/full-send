@@ -1,27 +1,15 @@
 package starter.stepdefinitions;
 
-import io.cucumber.java.ParameterType;
-import io.cucumber.java.ca.Donat;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.JavaScriptClick;
-import net.serenitybdd.screenplay.actions.SelectFromOptions;
-import net.serenitybdd.screenplay.actions.SetCheckbox;
 import net.serenitybdd.screenplay.ensure.*;
-import net.serenitybdd.screenplay.questions.page.TheWebPage;
-import net.serenitybdd.screenplay.ui.Button;
-import net.serenitybdd.screenplay.ui.InputField;
-import net.serenitybdd.screenplay.waits.Wait;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-import org.junit.jupiter.params.provider.EnumSource;
 import org.openqa.selenium.By;
-import starter.enums.DonationTestData;
 import starter.navigation.NavigateTo;
 import starter.donate.*;
-import starter.utils.FeeCalculator;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -34,13 +22,19 @@ public class DonateStepDefinitions {
         );
     }
 
+    @When("{actor} accepts promotional emails")
+    public void acceptsPromotionalEmails(Actor actor) {
+        actor.attemptsTo(
+                Donate.acceptPromotionalEmails()
+        );
+    }
+
     @When("{actor} chooses to use {string} bank accounts")
     public void selectDonationBankAccount(Actor actor, String country) {
         actor.attemptsTo(
                 Donate.byCountry(country)
         );
     }
-
 
     @When("{actor} chooses to donate a custom {string}")
     public void ChoosesToDonateAmount(Actor actor, String amount) {
@@ -94,7 +88,6 @@ public class DonateStepDefinitions {
                 JavaScriptClick.on(By.id("input_amount_" + amount))
         );
     }
-
 
     @Then("{actor} should see relevant details for {string}")
     public void seesState(Actor actor, String state) {
